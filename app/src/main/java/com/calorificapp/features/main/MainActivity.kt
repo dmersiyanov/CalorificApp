@@ -1,7 +1,8 @@
-package com.calorificapp
+package com.calorificapp.features.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.calorificapp.R
 
 class MainActivity : AppCompatActivity() {
 
