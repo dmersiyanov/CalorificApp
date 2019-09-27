@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">Calorific</string>
+    <string name="app_name">MyFitProgressPics</string>
+
+    <string name="month_picker">Выберите месяц</string>
+
+    <string name="file_provider_authority">com.calorificapp.fileprovider</string>
+
+    <string-array name="items_month">
+        <item>Январь</item>
+        <item>Февраль</item>
+        <item>Март</item>
+        <item>Апрель</item>
+        <item>Май</item>
+        <item>Июнь</item>
+        <item>Июль</item>
+        <item>Август</item>
+        <item>Сентябрь</item>
+        <item>Октябрь</item>
+        <item>Ноябрь</item>
+        <item>Декабрь</item>
+    </string-array>
+
+
 </resources>
+
