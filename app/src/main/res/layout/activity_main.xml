@@ -7,12 +7,12 @@
         tools:context=".features.main.MainActivity">
 
     <FrameLayout
-            android:id="@+id/fragment_container"
+            android:id="@+id/vFragmentContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/navigationView"
+            android:id="@+id/vBottomNavigation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
