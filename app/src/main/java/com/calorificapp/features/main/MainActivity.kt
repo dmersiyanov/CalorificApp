@@ -84,7 +84,6 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentInteractionList
         return supportFragmentManager.findFragmentByTag(screen.name)
     }
 
-
     private fun initBottomNavigation() {
         vBottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
