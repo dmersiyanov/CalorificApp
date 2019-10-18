@@ -158,7 +158,6 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
         yearlyPics.list[month_spinner.selectedIndex] = currentMonthPics
         adapter.setItems(yearlyPics)
         currentMonthPics = MonthlyPics()
-
     }
 
 

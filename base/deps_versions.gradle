@@ -13,9 +13,13 @@ ext {
     circleImageViewVersion = "3.0.1"
     niceSpinnerVersion = "1.4.3"
     picassoVersion = "2.71828"
+    paperVersion = "2.6"
 
     // Network
     retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+
+    // DB
+    paperDb = "io.paperdb:paperdb:$paperVersion"
 
     // Dagger
     jsr330 = "javax.inject:javax.inject:$jsr330Version"

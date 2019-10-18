@@ -41,6 +41,9 @@ dependencies {
     implementation recyclerView
     implementation material
 
+    implementation paperDb
+
+
     // Custom Views
     implementation circleImageView
     implementation niceSpinner
