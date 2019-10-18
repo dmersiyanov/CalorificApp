@@ -26,10 +26,9 @@ android {
 apply from: "$project.rootDir/base/deps_versions.gradle"
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation project(":base:core")
+    implementation project(":domain")
 
     // Google
     implementation appcompat

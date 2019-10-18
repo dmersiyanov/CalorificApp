@@ -1,0 +1,26 @@
+apply from: "$rootDir/base/deps_versions.gradle"
+apply from: "$rootDir/base/config.gradle"
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion config.currentSDK
+
+    defaultConfig {
+        versionCode config.versionCode
+        versionName config.versionName
+        minSdkVersion config.minSDK
+        targetSdkVersion config.currentSDK
+    }
+}
+
+dependencies {
+    api kotlin
+
+    api rx.java
+    api rx.android
+    api rx.kotlin
+
+}
