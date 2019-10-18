@@ -29,6 +29,7 @@ dependencies {
 
     implementation project(":base:core")
     implementation project(":domain")
+    implementation project(":pure_domain")
 
     // Google
     implementation appcompat
