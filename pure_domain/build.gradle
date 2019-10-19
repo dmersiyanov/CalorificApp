@@ -3,6 +3,7 @@ apply plugin: 'kotlin'
 
 dependencies {
     implementation kotlin
+    implementation jsr330
 }
 
 sourceCompatibility = "7"

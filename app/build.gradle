@@ -43,13 +43,13 @@ dependencies {
 
     implementation paperDb
 
-
     // Custom Views
     implementation circleImageView
     implementation niceSpinner
 
     // ImageLoading
     implementation picasso
+
 
     // Testing
 //    testImplementation 'junit:junit:4.12'
