@@ -5,9 +5,8 @@ import io.paperdb.Paper
 import io.reactivex.Completable
 import io.reactivex.Single
 import timber.log.Timber
-import javax.inject.Inject
 
-class PaperLocalStorage @Inject constructor() : LocalStorage {
+class PaperLocalStorage : LocalStorage {
 
     override fun write(tableName: String, key: String, data: Any): Completable {
         return Completable.fromAction {

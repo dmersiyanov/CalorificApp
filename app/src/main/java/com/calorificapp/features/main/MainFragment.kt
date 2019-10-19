@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,15 +16,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.calorificapp.R
+import com.calorificapp.data.PaperLocalStorage
+import com.calorificapp.data.repo.PicturesLocalRepoImpl
 import com.calorificapp.features.main.data.PhotoDataSource
 import com.calorificapp.features.main.data.SharedPrefRepo
 import com.calorificapp.features.main.model.MonthlyPics
 import com.calorificapp.features.main.model.YearlyPics
 import com.calorificapp.features.main.model.addWeeklyPic
 import com.calorificapp.features.utils.toast
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.angmarch.views.NiceSpinner
 import org.angmarch.views.OnSpinnerItemSelectedListener
+import timber.log.Timber
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -38,12 +42,13 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
     private val spinnerItems = mutableListOf<String>()
     private var mCurrentPhotoPath: String = ""
 
-    private val yearlyPics = YearlyPics()
     private var currentMonthPics = MonthlyPics()
 
     private lateinit var sharedPrefRepo: PhotoDataSource
     private lateinit var adapter: ProgressPicsAdapter
     private var weekNumber = -1
+    private var picturesLocalRepoImpl: PicturesLocalRepoImpl =
+        PicturesLocalRepoImpl(PaperLocalStorage())
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -57,8 +62,25 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
         setupSpinner()
         setCurrentMonth(month_spinner, rv_progress_pics)
 
+
         sharedPrefRepo = SharedPrefRepo(context!!)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadPictures()
+    }
+
+    private fun loadPictures() {
+        picturesLocalRepoImpl.get()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                adapter.setItems(it)
+            }, {
+                Timber.e(it)
+            })
     }
 
     private fun setupRecycler() {
@@ -109,7 +131,7 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
                 photoFile = createImageFile()
             } catch (ex: IOException) {
                 // Error occurred while creating the File
-                Log.e(this.tag, ex.message)
+                Timber.tag(this.tag).e(ex)
             }
 
             // Continue only if the File was successfully created
@@ -155,8 +177,11 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
 
     private fun loadImage(path: String) {
         currentMonthPics.weeklyPics.addWeeklyPic(weekNumber, path)
+        val yearlyPics = YearlyPics()
         yearlyPics.list[month_spinner.selectedIndex] = currentMonthPics
         adapter.setItems(yearlyPics)
+
+        picturesLocalRepoImpl.save(yearlyPics)
         currentMonthPics = MonthlyPics()
     }
 
