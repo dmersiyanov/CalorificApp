@@ -1,29 +1,26 @@
+apply from: "$rootDir/base/deps_versions.gradle"
+apply from: "$rootDir/base/config.gradle"
+
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
-android {
-    compileSdkVersion 29
-    defaultConfig {
-        applicationId "com.calorificapp"
-        minSdkVersion 21
-        targetSdkVersion 29
-        
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
+androidExtensions {
+    experimental = true
 }
 
-apply from: "$project.rootDir/base/deps_versions.gradle"
+android {
+    compileSdkVersion config.currentSDK
+
+    defaultConfig {
+        versionCode config.versionCode
+        versionName config.versionName
+        minSdkVersion config.minSDK
+        targetSdkVersion config.currentSDK
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+}
 
 dependencies {
 
@@ -32,8 +29,8 @@ dependencies {
     implementation project(":pure_domain")
 
     // Google
-    implementation appcompat
-    implementation coreKtx
+//    implementation appcompat
+//    implementation coreKtx
     implementation constraintLayout
     implementation lifecycleExtensions
     implementation lifecycleViewmodel
