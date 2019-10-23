@@ -1,4 +1,4 @@
-package com.calorificapp.features.main
+package com.calorificapp.features.main.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
