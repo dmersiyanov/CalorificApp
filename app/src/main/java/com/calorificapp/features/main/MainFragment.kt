@@ -39,6 +39,8 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
             this@MainFragment
         )
     }
+
+
     private val viewModel: MainScreenViewModel by lazy {
         ViewModelProviders.of(this).get(MainScreenViewModel::class.java)
     }

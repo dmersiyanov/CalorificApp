@@ -1,4 +1,4 @@
-package com.calorificapp.features.main
+package com.calorificapp.features.full_pic_progress
 
 import android.annotation.SuppressLint
 import android.os.Bundle

@@ -4,6 +4,7 @@ apply from: "$rootDir/base/config.gradle"
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 androidExtensions {
     experimental = true
@@ -30,5 +31,10 @@ dependencies {
 
     api appcompat
     api coreKtx
+
+    // Dagger 2
+    api dagger
+    kapt daggerCompiler
+    api jsr330
 
 }
