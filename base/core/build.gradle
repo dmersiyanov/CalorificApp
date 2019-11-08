@@ -33,8 +33,10 @@ dependencies {
     api coreKtx
 
     // Dagger 2
-    api dagger
-    kapt daggerCompiler
-    api jsr330
+    api dagger2.core
+    kapt dagger2.daggerCompiler
+    api dagger2.androidSupport
+    kapt dagger2.androidCompiler
+    api dagger2.jsr330
 
 }
