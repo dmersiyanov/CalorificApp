@@ -12,11 +12,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.calorificapp.R
+import com.calorificapp.di.ViewModelFactory
 import com.calorificapp.features.main.adapter.ProgressPicsAdapter
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.angmarch.views.NiceSpinner
@@ -25,6 +26,7 @@ import timber.log.Timber
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 
 class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
@@ -33,6 +35,8 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
     private val spinnerItems = mutableListOf<String>()
     private var mCurrentPhotoPath: String = ""
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
     private val adapter: ProgressPicsAdapter by lazy {
         ProgressPicsAdapter(
@@ -40,11 +44,9 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
         )
     }
 
-
-    private val viewModel: MainScreenViewModel by lazy {
-        ViewModelProviders.of(this).get(MainScreenViewModel::class.java)
+    private val viewModel: MainScreenViewModel by viewModels {
+        viewModelFactory
     }
-
 
     private val layout = R.layout.fragment_main
 

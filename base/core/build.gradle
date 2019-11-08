@@ -34,8 +34,8 @@ dependencies {
 
     // Dagger 2
     api dagger2.core
-    kapt dagger2.daggerCompiler
     api dagger2.androidSupport
+    kapt dagger2.daggerCompiler
     kapt dagger2.androidCompiler
     api dagger2.jsr330
 

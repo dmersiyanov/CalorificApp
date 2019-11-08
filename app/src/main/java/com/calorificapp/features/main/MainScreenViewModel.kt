@@ -14,8 +14,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 import java.io.File
+import javax.inject.Inject
 
-class MainScreenViewModel(application: Application) : BaseViewModel(application) {
+class MainScreenViewModel @Inject constructor(application: Application) :
+    BaseViewModel(application) {
 
     override val disposables: CompositeDisposable = CompositeDisposable()
     private var picturesLocalRepoImpl: PicturesLocalRepoImpl =
