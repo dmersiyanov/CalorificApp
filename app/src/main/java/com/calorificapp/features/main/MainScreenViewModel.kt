@@ -3,7 +3,7 @@ package com.calorificapp.features.main
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.calorificapp.CalorificApp
-import com.calorificapp.base.BaseViewModel
+import com.calorificapp.core.base.BaseViewModel
 import com.calorificapp.data.PaperLocalStorage
 import com.calorificapp.data.repo.PicturesLocalRepoImpl
 import com.calorificapp.features.main.model.MonthlyPics

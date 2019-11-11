@@ -1,4 +1,4 @@
-package com.calorificapp.base
+package com.calorificapp.core.base
 
 import android.content.Context
 import android.os.Bundle
