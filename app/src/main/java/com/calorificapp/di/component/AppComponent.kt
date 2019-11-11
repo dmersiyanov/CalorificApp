@@ -1,13 +1,13 @@
 package com.calorificapp.di.component
 
 import android.app.Application
+import com.calorific.main.di.AcoountFragmentModule
 import com.calorificapp.CalorificApp
 import com.calorificapp.di.module.AppModule
-import com.calorificapp.di.module.FragmentBuildersModule
-import com.calorificapp.di.module.MainActivityModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
+import di.MainActivityModule
 import javax.inject.Singleton
 
 
@@ -16,8 +16,8 @@ import javax.inject.Singleton
     modules = [
         AndroidInjectionModule::class,
         AppModule::class,
-        MainActivityModule::class,
-        FragmentBuildersModule::class]
+//        MainActivityModule::class,
+        AcoountFragmentModule::class]
 )
 interface AppComponent {
 

@@ -1,20 +1,22 @@
-package com.calorificapp.features.main.model
+package com.calorific.main.model
 
 
 // Класс YearlyPics содержит 12 объектов MonthlyPics
 class YearlyPics(var list: MutableList<MonthlyPics> = mutableListOf(
-        MonthlyPics(),
-        MonthlyPics(),
-        MonthlyPics(),
-        MonthlyPics(),
-        MonthlyPics(),
-        MonthlyPics(),
-        MonthlyPics(),
-        MonthlyPics(),
-        MonthlyPics(),
-        MonthlyPics(),
-        MonthlyPics(),
-        MonthlyPics()))
+    MonthlyPics(),
+    MonthlyPics(),
+    MonthlyPics(),
+    MonthlyPics(),
+    MonthlyPics(),
+    MonthlyPics(),
+    MonthlyPics(),
+    MonthlyPics(),
+    MonthlyPics(),
+    MonthlyPics(),
+    MonthlyPics(),
+    MonthlyPics()
+)
+)
 
 // Массив weeklyPics содержит 4 фотографии (по 1 на каждую неделю),
 // каждый элемент это локальный путь изображения

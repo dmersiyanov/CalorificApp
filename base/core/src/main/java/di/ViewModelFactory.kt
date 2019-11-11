@@ -1,4 +1,4 @@
-package com.calorificapp.di.utils
+package di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

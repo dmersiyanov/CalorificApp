@@ -1,4 +1,4 @@
-package com.calorificapp.features.main
+package com.calorific.main
 
 import android.app.Activity.RESULT_OK
 import android.content.Context
@@ -16,10 +16,10 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.calorific.main.adapter.ProgressPicsAdapter
 import com.calorificapp.R
 import com.calorificapp.di.utils.Injectable
 import com.calorificapp.di.utils.ViewModelFactory
-import com.calorificapp.features.main.adapter.ProgressPicsAdapter
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.angmarch.views.NiceSpinner
 import org.angmarch.views.OnSpinnerItemSelectedListener
@@ -30,7 +30,7 @@ import java.util.*
 import javax.inject.Inject
 
 
-class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener,
+class AccountFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener,
     Injectable {
 
     private var listener: OnFragmentInteractionListener? = null
@@ -42,11 +42,11 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener,
 
     private val adapter: ProgressPicsAdapter by lazy {
         ProgressPicsAdapter(
-            this@MainFragment
+            this@AccountFragment
         )
     }
 
-    private val viewModel: MainScreenViewModel by viewModels { viewModelFactory }
+    private val viewModel: AccountScreenViewModel by viewModels { viewModelFactory }
 
     private val layout = R.layout.fragment_main
 
@@ -76,7 +76,7 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener,
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvProgressPics.run {
             this.layoutManager = layoutManager
-            this.adapter = this@MainFragment.adapter
+            this.adapter = this@AccountFragment.adapter
 
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -159,7 +159,10 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener,
                     file
                 )
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                startActivityForResult(
+                    takePictureIntent,
+                    REQUEST_IMAGE_CAPTURE
+                )
             }
         }
     }
@@ -217,6 +220,6 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener,
         private const val REQUEST_IMAGE_CAPTURE = 1
 
         @JvmStatic
-        fun newInstance() = MainFragment()
+        fun newInstance() = AccountFragment()
     }
 }

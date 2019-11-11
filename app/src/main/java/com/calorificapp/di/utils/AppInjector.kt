@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager
 import com.calorificapp.CalorificApp
 import com.calorificapp.di.component.DaggerAppComponent
 import dagger.android.support.AndroidSupportInjection
+import di.Injectable
 import timber.log.Timber
 
 /**
@@ -76,4 +77,3 @@ object AppInjector {
     }
 }
 
-interface Injectable

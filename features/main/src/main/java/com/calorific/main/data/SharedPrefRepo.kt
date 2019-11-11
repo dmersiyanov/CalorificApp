@@ -1,7 +1,7 @@
-package com.calorificapp.features.main.data
+package com.calorific.main.data
 
 import android.content.Context
-import com.calorificapp.features.main.model.MonthlyPics
+import com.calorific.main.model.MonthlyPics
 
 class SharedPrefRepo(context: Context): PhotoDataSource {
 

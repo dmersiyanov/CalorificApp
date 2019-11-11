@@ -26,6 +26,7 @@ dependencies {
 
     api project(":domain")
     api project(":pure_domain")
+
     api timber
     api lifecycleExtensions
 

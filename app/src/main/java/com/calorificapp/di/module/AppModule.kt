@@ -1,6 +1,7 @@
 package com.calorificapp.di.module
 
 import dagger.Module
+import di.ViewModelModule
 
 
 @Module(includes = [ViewModelModule::class])

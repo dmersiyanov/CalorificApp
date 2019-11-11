@@ -1,23 +1,22 @@
 package com.calorificapp.data.repo
 
 import com.calorificapp.domain.repo.LocalStorage
-import com.calorificapp.features.main.model.YearlyPics
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 
 class PicturesLocalRepoImpl(private val localStorage: LocalStorage) {
 
-    fun save(yearlyPics: YearlyPics): Completable {
+    fun save(yearlyPics: com.calorific.main.model.YearlyPics): Completable {
         localStorage.erase(PICS_TABLE)
         return localStorage.write(PICS_TABLE, YEARLY_KEY, yearlyPics)
             .subscribeOn(Schedulers.io())
 
     }
 
-    fun get(): Single<YearlyPics> {
+    fun get(): Single<com.calorific.main.model.YearlyPics> {
         return localStorage
-            .read<YearlyPics>(PICS_TABLE, YEARLY_KEY)
+            .read<com.calorific.main.model.YearlyPics>(PICS_TABLE, YEARLY_KEY)
             .subscribeOn(Schedulers.io())
     }
 

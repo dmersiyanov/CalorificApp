@@ -22,7 +22,7 @@
         <activity android:name=".features.onboarding.OnboardingActivity" />
         <activity android:name=".features.profile.ProfileActivity" />
         <activity android:name=".features.full_pic_progress.FullPictureActivity" />
-        <activity android:name=".features.main.MainActivity">
+        <activity android:name="com.calorific.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />

@@ -34,6 +34,9 @@ dependencies {
     implementation project(":domain")
     implementation project(":pure_domain")
 
+    //features
+    implementation project(":features:main")
+
     // Google
 //    implementation appcompat
 //    implementation coreKtx

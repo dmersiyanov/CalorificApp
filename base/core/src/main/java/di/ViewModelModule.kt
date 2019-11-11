@@ -1,10 +1,8 @@
-package com.calorificapp.di.module
+package di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.calorificapp.di.utils.ViewModelFactory
-import com.calorificapp.di.utils.ViewModelKey
-import com.calorificapp.features.main.MainScreenViewModel
+import com.calorific.main.MainScreenViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -17,6 +15,6 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(MainScreenViewModel::class)
-    internal abstract fun mainScreenViewModel(viewModel: MainScreenViewModel): ViewModel
+    @ViewModelKey(com.calorific.main.MainScreenViewModel::class)
+    internal abstract fun mainScreenViewModel(viewModel: com.calorific.main.MainScreenViewModel): ViewModel
 }
