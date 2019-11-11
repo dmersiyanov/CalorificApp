@@ -1,4 +1,4 @@
-package com.calorificapp.di
+package com.calorificapp.di.utils
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

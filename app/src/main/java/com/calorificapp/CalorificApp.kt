@@ -1,8 +1,7 @@
 package com.calorificapp
 
-import android.app.Activity
 import android.app.Application
-import com.calorificapp.di.AppInjector
+import com.calorificapp.di.utils.AppInjector
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -14,19 +13,18 @@ import javax.inject.Inject
 class CalorificApp : Application(), HasAndroidInjector {
 
     @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
     override fun androidInjector(): AndroidInjector<Any> {
-        return dispatchingAndroidInjector as AndroidInjector<Any>
+        return dispatchingAndroidInjector
     }
 
     override fun onCreate() {
         super.onCreate()
+        AppInjector.init(this)
         instance = this
         Paper.init(this)
         initLogger()
-        AppInjector.init(this)
-
     }
 
     private fun initLogger() {

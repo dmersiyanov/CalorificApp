@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.calorificapp.R
+import com.calorificapp.di.utils.Injectable
 import com.calorificapp.features.learning.LearningFragment
 import com.calorificapp.features.messages.MessagesFragment
 import com.calorificapp.features.settings.SettingsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), MainFragment.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), MainFragment.OnFragmentInteractionListener,
+    Injectable {
 
     override fun onFragmentInteraction(uri: Uri) {
 

@@ -17,7 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.calorificapp.R
-import com.calorificapp.di.ViewModelFactory
+import com.calorificapp.di.utils.Injectable
+import com.calorificapp.di.utils.ViewModelFactory
 import com.calorificapp.features.main.adapter.ProgressPicsAdapter
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.angmarch.views.NiceSpinner
@@ -29,7 +30,8 @@ import java.util.*
 import javax.inject.Inject
 
 
-class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
+class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener,
+    Injectable {
 
     private var listener: OnFragmentInteractionListener? = null
     private val spinnerItems = mutableListOf<String>()
@@ -44,9 +46,7 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
         )
     }
 
-    private val viewModel: MainScreenViewModel by viewModels {
-        viewModelFactory
-    }
+    private val viewModel: MainScreenViewModel by viewModels { viewModelFactory }
 
     private val layout = R.layout.fragment_main
 
@@ -63,11 +63,8 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
         setupRecycler()
         setupSpinner()
         setCurrentMonth(spinner = vMonthSpinner, list = rvProgressPics)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         observe()
+
     }
 
     override fun onResume() {

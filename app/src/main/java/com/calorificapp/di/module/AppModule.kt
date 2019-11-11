@@ -1,4 +1,4 @@
-package com.calorificapp.di
+package com.calorificapp.di.module
 
 import dagger.Module
 

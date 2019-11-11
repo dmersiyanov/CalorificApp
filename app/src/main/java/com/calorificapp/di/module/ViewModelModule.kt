@@ -1,7 +1,9 @@
-package com.calorificapp.di
+package com.calorificapp.di.module
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.calorificapp.di.utils.ViewModelFactory
+import com.calorificapp.di.utils.ViewModelKey
 import com.calorificapp.features.main.MainScreenViewModel
 import dagger.Binds
 import dagger.Module

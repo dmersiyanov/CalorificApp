@@ -1,4 +1,4 @@
-package com.calorificapp.di
+package com.calorificapp.di.module
 
 import com.calorificapp.features.main.MainFragment
 import dagger.Module
