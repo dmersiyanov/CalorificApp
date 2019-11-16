@@ -1,4 +1,4 @@
-package com.calorificapp.features.main
+package com.calorificapp.features.account
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
@@ -6,9 +6,9 @@ import com.calorificapp.CalorificApp
 import com.calorificapp.core.base.BaseViewModel
 import com.calorificapp.data.PaperLocalStorage
 import com.calorificapp.data.repo.PicturesLocalRepoImpl
-import com.calorificapp.features.main.model.MonthlyPics
-import com.calorificapp.features.main.model.YearlyPics
-import com.calorificapp.features.main.model.addWeeklyPic
+import com.calorificapp.features.account.model.MonthlyPics
+import com.calorificapp.features.account.model.YearlyPics
+import com.calorificapp.features.account.model.addWeeklyPic
 import com.calorificapp.features.utils.toast
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -16,7 +16,7 @@ import timber.log.Timber
 import java.io.File
 import javax.inject.Inject
 
-class MainScreenViewModel @Inject constructor(application: Application) :
+class AccountViewModel @Inject constructor(application: Application) :
     BaseViewModel(application) {
 
     override val disposables: CompositeDisposable = CompositeDisposable()

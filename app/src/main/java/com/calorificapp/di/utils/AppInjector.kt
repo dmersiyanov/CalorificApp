@@ -17,8 +17,11 @@ import timber.log.Timber
 object AppInjector {
 
     fun init(githubApp: CalorificApp) {
-        DaggerAppComponent.builder().application(githubApp)
-            .build().inject(githubApp)
+        DaggerAppComponent
+            .builder()
+            .application(githubApp)
+            .build()
+            .inject(githubApp)
 
         githubApp
             .registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {

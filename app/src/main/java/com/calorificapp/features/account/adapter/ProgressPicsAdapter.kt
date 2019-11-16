@@ -1,4 +1,4 @@
-package com.calorificapp.features.main.adapter
+package com.calorificapp.features.account.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.calorificapp.R
-import com.calorificapp.features.main.model.YearlyPics
+import com.calorificapp.features.account.model.YearlyPics
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_progress_pic.view.*
 import java.io.File
 
 class ProgressPicsAdapter(private var clickListener: OnPhotoClickListener,
-                          private var yearlyPics: YearlyPics = YearlyPics())
+                          private var yearlyPics: YearlyPics = YearlyPics()
+)
     : RecyclerView.Adapter<ProgressPicsAdapter.ViewHolder>() {
 
     private lateinit var context: Context

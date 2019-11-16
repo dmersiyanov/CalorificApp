@@ -1,6 +1,6 @@
 package com.calorificapp.di.module
 
-import com.calorificapp.features.main.MainFragment
+import com.calorificapp.features.account.AccountFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -9,6 +9,6 @@ import dagger.android.ContributesAndroidInjector
 abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
-    abstract fun contributeMainFragment(): MainFragment
+    abstract fun contributeMainFragment(): AccountFragment
 
 }
