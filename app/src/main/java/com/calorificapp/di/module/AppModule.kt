@@ -1,10 +1,19 @@
 package com.calorificapp.di.module
 
+import android.app.Application
+import android.content.Context
 import dagger.Module
+import dagger.Provides
 
 
 @Module(includes = [ViewModelModule::class])
 public class AppModule {
+
+
+    @Provides
+    fun provideContext(application: Application): Context {
+        return application
+    }
 
 //    private val BASE_URL = "https://api.github.com/"
 

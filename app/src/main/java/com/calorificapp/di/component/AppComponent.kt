@@ -5,6 +5,7 @@ import com.calorificapp.CalorificApp
 import com.calorificapp.di.module.AppModule
 import com.calorificapp.di.module.FragmentBuildersModule
 import com.calorificapp.di.module.MainActivityModule
+import com.calorificapp.di.module.ResModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -17,7 +18,8 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         AppModule::class,
         MainActivityModule::class,
-        FragmentBuildersModule::class]
+        FragmentBuildersModule::class,
+        ResModule::class]
 )
 interface AppComponent {
 

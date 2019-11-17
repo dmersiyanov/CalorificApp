@@ -10,13 +10,17 @@ import com.calorificapp.features.account.model.MonthlyPics
 import com.calorificapp.features.account.model.YearlyPics
 import com.calorificapp.features.account.model.addWeeklyPic
 import com.calorificapp.features.utils.toast
+import com.calorificapp.pure_domain.ResourceManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 import java.io.File
 import javax.inject.Inject
 
-class AccountViewModel @Inject constructor(application: Application) :
+class AccountViewModel @Inject constructor(
+    application: Application,
+    private val resourceManager: ResourceManager
+) :
     BaseViewModel(application) {
 
     override val disposables: CompositeDisposable = CompositeDisposable()
