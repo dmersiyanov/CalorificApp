@@ -1,1 +1,1 @@
-include ':app', ':base:core', ':domain', ':pure_domain', 'features:main'
+include ':app', ':base:core', ':domain', ':pure_domain', 'features:account'
