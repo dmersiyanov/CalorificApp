@@ -1,7 +1,7 @@
 package com.calorificapp.data.repo
 
 import com.calorificapp.domain.repo.LocalStorage
-import com.calorificapp.features.main.model.YearlyPics
+import com.calorificapp.features.account.model.YearlyPics
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers

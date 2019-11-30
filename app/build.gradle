@@ -4,6 +4,7 @@ apply from: "$rootDir/base/config.gradle"
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 androidExtensions {
     experimental = true
@@ -19,6 +20,11 @@ android {
         targetSdkVersion config.currentSDK
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -46,6 +52,11 @@ dependencies {
 
     // ImageLoading
     implementation picasso
+
+    kapt dagger2.daggerCompiler
+    kapt dagger2.androidCompiler
+
+
 
 
     // Testing

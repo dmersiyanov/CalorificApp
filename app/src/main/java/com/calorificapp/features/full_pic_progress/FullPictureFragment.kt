@@ -1,4 +1,4 @@
-package com.calorificapp.features.main
+package com.calorificapp.features.full_pic_progress
 
 import android.os.Bundle
 import android.view.LayoutInflater

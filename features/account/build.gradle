@@ -21,22 +21,12 @@ android {
     }
 }
 
-
 dependencies {
+    implementation project(":domain")
+    implementation project(":pure_domain")
 
-    api project(":domain")
-    api project(":pure_domain")
-    api timber
-    api lifecycleExtensions
+    implementation appcompat
+    implementation coreKtx
 
-    api appcompat
-    api coreKtx
-
-    // Dagger 2
-    api dagger2.core
-    api dagger2.androidSupport
-    kapt dagger2.daggerCompiler
-    kapt dagger2.androidCompiler
-    api dagger2.jsr330
 
 }

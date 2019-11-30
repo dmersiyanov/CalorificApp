@@ -1,52 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:weightSum="4"
-    >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_gray"
+        android:orientation="horizontal"
+        android:weightSum="4">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_weight="1"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:id="@+id/week_1"
-        android:layout_width="@dimen/weekly_image_size"
-        android:layout_height="@dimen/weekly_image_size"
-        android:src="@drawable/test_pic" />
-
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_weight="1"
-        android:layout_marginEnd="8dp"
-        android:id="@+id/week_2"
-        android:layout_width="@dimen/weekly_image_size"
-        android:layout_height="@dimen/weekly_image_size"
-        android:src="@drawable/test_pic" />
+            android:id="@+id/week_1"
+            android:layout_width="@dimen/weekly_image_size"
+            android:layout_height="@dimen/weekly_image_size"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_account_add_black" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_weight="1"
-        android:layout_marginEnd="8dp"
-        android:id="@+id/week_3"
-        android:layout_width="@dimen/weekly_image_size"
-        android:layout_height="@dimen/weekly_image_size"
-        android:src="@drawable/test_pic" />
+            android:id="@+id/week_2"
+            android:layout_width="@dimen/weekly_image_size"
+            android:layout_height="@dimen/weekly_image_size"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_account_add_black" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_weight="1"
-        android:layout_marginEnd="8dp"
-        android:id="@+id/week_4"
-        android:layout_width="@dimen/weekly_image_size"
-        android:layout_height="@dimen/weekly_image_size"
-        android:src="@drawable/test_pic" />
+            android:id="@+id/week_3"
+            android:layout_width="@dimen/weekly_image_size"
+            android:layout_height="@dimen/weekly_image_size"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_account_add_black" />
 
-    <!--<de.hdodenhof.circleimageview.CircleImageView-->
-        <!--android:layout_weight="1"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:id="@+id/week_5"-->
-        <!--android:layout_width="@dimen/weekly_image_size"-->
-        <!--android:layout_height="@dimen/weekly_image_size"-->
-        <!--android:src="@drawable/test_pic" />-->
-
-
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/week_4"
+            android:layout_width="@dimen/weekly_image_size"
+            android:layout_height="@dimen/weekly_image_size"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:src="@drawable/test_pic" />
 </LinearLayout>

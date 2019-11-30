@@ -20,8 +20,8 @@
         <activity android:name=".features.userCreate.CreateUserActivity" />
         <activity android:name=".features.auth.AuthActivity" />
         <activity android:name=".features.onboarding.OnboardingActivity" />
-        <activity android:name=".features.profile.ProfileActivity" />
-        <activity android:name=".features.main.FullPictureActivity" />
+        <activity android:name=".features.account.ProfileActivity" />
+        <activity android:name=".features.full_pic_progress.FullPictureActivity" />
         <activity android:name=".features.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

@@ -6,12 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.calorificapp.R
+import com.calorificapp.di.utils.Injectable
+import com.calorificapp.features.account.AccountFragment
 import com.calorificapp.features.learning.LearningFragment
 import com.calorificapp.features.messages.MessagesFragment
 import com.calorificapp.features.settings.SettingsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), MainFragment.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), AccountFragment.OnFragmentInteractionListener,
+    Injectable {
 
     override fun onFragmentInteraction(uri: Uri) {
 
@@ -29,7 +32,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentInteractionList
             supportFragmentManager.commit {
                 add(
                     R.id.vFragmentContainer,
-                    findBottomFragment(BottomScreen.ACCOUNT) ?: MainFragment.newInstance(),
+                    findBottomFragment(BottomScreen.ACCOUNT) ?: AccountFragment.newInstance(),
                     BottomScreen.ACCOUNT.name
                 )
             }
@@ -51,7 +54,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentInteractionList
     private fun showAccountScreen() {
         showScreen(
             fragment = findBottomFragment(BottomScreen.ACCOUNT)
-                ?: MainFragment.newInstance(),
+                ?: AccountFragment.newInstance(),
             screen = BottomScreen.ACCOUNT
         )
     }

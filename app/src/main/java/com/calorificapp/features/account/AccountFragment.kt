@@ -1,4 +1,4 @@
-package com.calorificapp.features.main
+package com.calorificapp.features.account
 
 import android.app.Activity.RESULT_OK
 import android.content.Context
@@ -12,19 +12,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.calorificapp.R
-import com.calorificapp.data.PaperLocalStorage
-import com.calorificapp.data.repo.PicturesLocalRepoImpl
-import com.calorificapp.features.main.data.PhotoDataSource
-import com.calorificapp.features.main.data.SharedPrefRepo
-import com.calorificapp.features.main.model.MonthlyPics
-import com.calorificapp.features.main.model.YearlyPics
-import com.calorificapp.features.main.model.addWeeklyPic
-import com.calorificapp.features.utils.toast
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.calorificapp.di.utils.Injectable
+import com.calorificapp.di.utils.ViewModelFactory
+import com.calorificapp.features.account.adapter.ProgressPicsAdapter
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.angmarch.views.NiceSpinner
 import org.angmarch.views.OnSpinnerItemSelectedListener
@@ -32,24 +27,28 @@ import timber.log.Timber
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 
-class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
+class AccountFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener,
+    Injectable {
 
     private var listener: OnFragmentInteractionListener? = null
     private val spinnerItems = mutableListOf<String>()
     private var mCurrentPhotoPath: String = ""
 
-    private var currentMonthPics = MonthlyPics()
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var sharedPrefRepo: PhotoDataSource
-    private val adapter: ProgressPicsAdapter by lazy { ProgressPicsAdapter(this@MainFragment) }
-    private var weekNumber = -1
-    private var picturesLocalRepoImpl: PicturesLocalRepoImpl =
-        PicturesLocalRepoImpl(PaperLocalStorage())
+    private val adapter: ProgressPicsAdapter by lazy {
+        ProgressPicsAdapter(
+            this@AccountFragment
+        )
+    }
+
+    private val viewModel: AccountViewModel by viewModels { viewModelFactory }
 
     private val layout = R.layout.fragment_main
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,32 +63,20 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
         setupRecycler()
         setupSpinner()
         setCurrentMonth(spinner = vMonthSpinner, list = rvProgressPics)
-
-
-        sharedPrefRepo = SharedPrefRepo(context!!)
+        observe()
 
     }
 
     override fun onResume() {
         super.onResume()
-        loadPictures()
-    }
-
-    private fun loadPictures() {
-        picturesLocalRepoImpl.get()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                adapter.setItems(it)
-            }, {
-                Timber.e(it)
-            })
+        viewModel.onResume()
     }
 
     private fun setupRecycler() {
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvProgressPics.run {
             this.layoutManager = layoutManager
-            this.adapter = this@MainFragment.adapter
+            this.adapter = this@AccountFragment.adapter
 
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -119,9 +106,14 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
 
     private fun setCurrentMonth(spinner: NiceSpinner, list: RecyclerView) {
         val currentMonth = Calendar.getInstance().get(Calendar.MONTH)
-
         spinner.selectedIndex = currentMonth
         list.scrollToPosition(currentMonth)
+    }
+
+    private fun observe() {
+        viewModel.picturesLiveData.observe(this, androidx.lifecycle.Observer { yearlyPics ->
+            adapter.setItems(yearlyPics)
+        })
     }
 
     private fun dispatchTakePictureIntent() {
@@ -167,36 +159,37 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
                     file
                 )
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                startActivityForResult(
+                    takePictureIntent,
+                    REQUEST_IMAGE_CAPTURE
+                )
             }
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val imgFile = File(mCurrentPhotoPath)
-            if (imgFile.exists()) {
-                context?.toast(imgFile.absolutePath)
-                loadImage(imgFile.absolutePath)
+        when (requestCode) {
+            REQUEST_IMAGE_CAPTURE -> {
+                viewModel.onPhotoTakeResult(
+                    isError = resultCode != RESULT_OK,
+                    path = mCurrentPhotoPath,
+                    currentMonth = vMonthSpinner.selectedIndex
+                )
             }
         }
-    }
 
-    private fun loadImage(path: String) {
-        currentMonthPics.weeklyPics.addWeeklyPic(weekNumber, path)
-        val yearlyPics = YearlyPics()
-        yearlyPics.list[vMonthSpinner.selectedIndex] = currentMonthPics
-        adapter.setItems(yearlyPics)
-
-        picturesLocalRepoImpl
-            .save(yearlyPics)
-            .subscribe()
-        currentMonthPics = MonthlyPics()
+//        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+//            val imgFile = File(mCurrentPhotoPath)
+//            if (imgFile.exists()) {
+//                context?.toast(imgFile.absolutePath)
+//                loadImage(imgFile.absolutePath)
+//            }
+//        }
     }
 
 
     override fun onClick(weekNumber: Int) {
-        this.weekNumber = weekNumber
+        viewModel.weekNumber = weekNumber
         dispatchTakePictureIntent()
     }
 
@@ -227,6 +220,6 @@ class MainFragment : Fragment(), ProgressPicsAdapter.OnPhotoClickListener {
         private const val REQUEST_IMAGE_CAPTURE = 1
 
         @JvmStatic
-        fun newInstance() = MainFragment()
+        fun newInstance() = AccountFragment()
     }
 }
