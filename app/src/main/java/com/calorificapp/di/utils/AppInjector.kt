@@ -56,21 +56,18 @@ object AppInjector {
     }
 
     private fun handleActivity(activity: Activity) {
-//        if (activity is Injectable) {
-//            AndroidInjection.inject(activity)
-//        }
         if (activity is FragmentActivity) {
             activity.supportFragmentManager
                 .registerFragmentLifecycleCallbacks(
                     object : FragmentManager.FragmentLifecycleCallbacks() {
                         override fun onFragmentCreated(
-                            fm: FragmentManager,
-                            f: Fragment,
+                            fragmentManager: FragmentManager,
+                            fragment: Fragment,
                             savedInstanceState: Bundle?
                         ) {
                             Timber.tag("KEK").i("onFragmentCreated")
-                            if (f is Injectable) {
-                                AndroidSupportInjection.inject(f)
+                            if (fragment is Injectable) {
+                                AndroidSupportInjection.inject(fragment)
                             }
                         }
                     }, true
